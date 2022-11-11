@@ -32,7 +32,20 @@ export class WorkersService {
     return this.http.post<Worker>(this.workersUrl, worker, this.httpOptions);
   }
 
-  deleteHeroService(id: number): Observable<Worker> {
-    return this.http.delete<Worker>(this.workersUrl, id);
+  editHeroService(worker: Worker): Observable<Worker> {
+    return this.http.put<Worker>(this.workersUrl, worker, this.httpOptions);
+  }
+
+  deleteHeroService(id: number): void {
+    const urlByID = `${this.workersUrl}/${id}`;
+    this.http.delete(urlByID).subscribe({
+      next: (data) => {
+        return 'Delete successful';
+      },
+      error: (error) => {
+        return error.message;
+        console.error('There was an error!', error);
+      },
+    });
   }
 }

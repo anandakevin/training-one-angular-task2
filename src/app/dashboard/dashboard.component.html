@@ -1,5 +1,17 @@
-<ul>
-  <li *ngFor="let worker of workers">
-    {{ worker.name | uppercase }}
-  </li>
-</ul>
+<div *ngIf="workers.length > 2; else second">
+  <ul *ngFor="let worker of workers">
+    <li [ngClass]="worker.name === 'Batman' ? 'bg-merah' : 'bg-biru'">
+      <a routerLink="/detail/{{ worker.id }}">
+        {{ worker.name | uppercase }}
+        Tanggal {{ date | date }}
+        <div>
+          Phone <b>{{ worker.phone | phone }}</b>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+<button>
+  <a routerLink="/add">Add Contact</a>
+</button>
+<ng-template #second>{{ emptyData }}</ng-template>

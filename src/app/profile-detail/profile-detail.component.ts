@@ -11,23 +11,33 @@ import { WorkersService } from '../service/workers.service';
   styleUrls: ['./profile-detail.component.scss'],
 })
 export class ProfileDetailComponent implements OnInit {
+  paramId = Number(this.route.snapshot.paramMap.get('id'));
   worker: Worker | undefined;
 
   constructor(
     private workersService: WorkersService,
     private route: ActivatedRoute,
     private location: Location
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.getWorker();
   }
 
+  ngOnInit(): void {}
+
   getWorker(): void {
-    const paramId = Number(this.route.snapshot.paramMap.get('id'));
     this.workersService
-      .getWorker(paramId)
+      .getWorker(this.paramId)
       .subscribe((response) => (this.worker = response));
+  }
+
+  edit() {
+    this.workersService.deleteHeroService(this.paramId);
+    this.goBack();
+  }
+
+  delete() {
+    this.workersService.deleteHeroService(this.paramId);
+    this.goBack();
   }
 
   goBack(): void {

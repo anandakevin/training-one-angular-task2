@@ -12,6 +12,9 @@ export class DashboardComponent implements OnInit {
   workers: Worker[] = [];
   title: string = 'Dashboard';
 
+  date = new Date();
+  emptyData: string = 'empty data';
+
   constructor(private workerService: WorkersService) {}
 
   ngOnInit(): void {

@@ -1,5 +1,12 @@
 <div *ngIf="worker; else second">
   <h2>{{ worker.name | uppercase }}</h2>
+  <div>{{ worker.phone | phone }}</div>
+  <div>{{ worker.skill }}</div>
+  <div>{{ worker.notes }}</div>
+  <i class="fas fa-trash"
+    ><button type="button" (click)="delete()">Delete</button></i
+  >
+  <a role="button" routerLink="/edit/{{ worker.id }}">Edit</a>
   <button type="button" (click)="goBack()">back to previous page</button>
 </div>
 <ng-template #second>Empty data</ng-template>

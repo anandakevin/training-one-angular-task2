@@ -1,0 +1,104 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <div>
+      <h1>{{ activity }} Contact</h1>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #workerForm="ngForm">
+      <div class="form-group">
+        <label>Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="workerModel.name"
+          name="name"
+          #name="ngModel"
+        />
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input
+          type="text"
+          maxlength="8"
+          (keypress)="validateNo($event)"
+          class="form-control"
+          id="phone"
+          required
+          [(ngModel)]="workerModel.phone"
+          name="phone"
+          #phone="ngModel"
+        />
+        <div
+          [hidden]="phone.valid || phone.pristine"
+          class="alert alert-danger"
+        >
+          Phone is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Skill</label>
+        <input
+          type="text"
+          maxlength="50"
+          (keypress)="validateNo($event)"
+          class="form-control"
+          id="skill"
+          required
+          [(ngModel)]="workerModel.skill"
+          name="skill"
+          #skill="ngModel"
+        />
+      </div>
+      <div class="form-group">
+        <label>Notes</label>
+        <input
+          type="text"
+          maxlength="100"
+          (keypress)="validateNo($event)"
+          class="form-control"
+          id="notes"
+          required
+          [(ngModel)]="workerModel.notes"
+          name="notes"
+          #notes="ngModel"
+        />
+      </div>
+      <button class="btn btn-danger" (click)="goBack()">Cancel</button>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!workerForm.form.valid"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>Berikut adalah data yang sudah anda kirim</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9">{{ workerModel.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Phone</div>
+      <div class="col-xs-9">{{ workerModel.phone }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Skill</div>
+      <div class="col-xs-9">{{ workerModel.skill }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Notes</div>
+      <div class="col-xs-9">{{ workerModel.notes }}</div>
+    </div>
+    <br />
+    <button type="button" class="btn btn-secondary" (click)="submitted = false">
+      Back
+    </button>
+  </div>
+</div>
