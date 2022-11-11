@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -15,8 +15,13 @@ export class WorkersService {
     headers: new HttpHeaders({ 'Content-type': 'application/json' }),
   };
 
-  getWorkers(): Observable<Worker[]> {
-    return this.http.get<Worker[]>(this.workersUrl);
+  getWorkers(searchQuery: string): Observable<Worker[]> {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    let params = new HttpParams();
+    params = params.set('name_like', searchQuery);
+    console.log('searchQuery: ' + searchQuery);
+    return this.http.get<Worker[]>(this.workersUrl, { params: params });
   }
 
   getWorker(id: number): Observable<Worker> {
@@ -32,8 +37,9 @@ export class WorkersService {
     return this.http.post<Worker>(this.workersUrl, worker, this.httpOptions);
   }
 
-  editHeroService(worker: Worker): Observable<Worker> {
-    return this.http.put<Worker>(this.workersUrl, worker, this.httpOptions);
+  editHeroService(worker: Worker, id: number): Observable<Worker> {
+    const urlByID = `${this.workersUrl}/${id}`;
+    return this.http.put<Worker>(urlByID, worker, this.httpOptions);
   }
 
   deleteHeroService(id: number): void {

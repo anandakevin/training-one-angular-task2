@@ -1,4 +1,9 @@
-<div *ngIf="workers.length > 2; else second">
+<input
+  [(ngModel)]="searchQuery"
+  (keyup)="getWorkers()"
+  placeholder="Search name here"
+/>
+<div *ngIf="workers.length > 0; else second">
   <ul *ngFor="let worker of workers">
     <li [ngClass]="worker.name === 'Batman' ? 'bg-merah' : 'bg-biru'">
       <a routerLink="/detail/{{ worker.id }}">

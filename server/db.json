@@ -25,12 +25,14 @@
       "id": 8
     },
     {
-      "name": "Your freelancer name",
+      "name": "kevin1",
       "phone": "98765543",
-      "id": 9
+      "id": 9,
+      "skill": "asd",
+      "notes": "asd"
     },
     {
-      "name": "Your freelancer name",
+      "name": "kevin2",
       "phone": "98765543",
       "skill": "default skill",
       "notes": "default notes",
@@ -56,6 +58,20 @@
       "skill": "default skill",
       "notes": "default notes",
       "id": 15
+    },
+    {
+      "name": "Your freelancer name",
+      "phone": "98765543",
+      "skill": "default skill",
+      "notes": "default notes",
+      "id": 16
+    },
+    {
+      "name": "anisa",
+      "phone": "98765543",
+      "skill": "default skill",
+      "notes": "default notes",
+      "id": 17
     }
   ]
 }

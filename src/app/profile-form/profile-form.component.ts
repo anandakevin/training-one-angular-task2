@@ -75,13 +75,15 @@ export class ProfileFormComponent implements OnInit {
       return;
     }
     if (this.activity == 'Add') {
-      this.workersService.addHeroService(data as Worker).subscribe((hero) => {
+      this.workersService.addHeroService(data as Worker).subscribe((worker) => {
         this.goBack();
       });
     } else if (this.activity == 'Edit') {
-      this.workersService.editHeroService(data as Worker).subscribe((hero) => {
-        this.goBack();
-      });
+      this.workersService
+        .editHeroService(data as Worker, this.paramId)
+        .subscribe((worker) => {
+          this.goBack();
+        });
     }
   }
 }

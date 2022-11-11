@@ -30,11 +30,6 @@ export class ProfileDetailComponent implements OnInit {
       .subscribe((response) => (this.worker = response));
   }
 
-  edit() {
-    this.workersService.deleteHeroService(this.paramId);
-    this.goBack();
-  }
-
   delete() {
     this.workersService.deleteHeroService(this.paramId);
     this.goBack();

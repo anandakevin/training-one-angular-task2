@@ -11,6 +11,7 @@ import { WorkersService } from '../service/workers.service';
 export class DashboardComponent implements OnInit {
   workers: Worker[] = [];
   title: string = 'Dashboard';
+  searchQuery: string = '';
 
   date = new Date();
   emptyData: string = 'empty data';
@@ -23,8 +24,10 @@ export class DashboardComponent implements OnInit {
   }
 
   getWorkers(): void {
-    this.workerService
-      .getWorkers()
-      .subscribe((response) => (this.workers = response));
+    console.log('getWorkers is triggered');
+    this.workerService.getWorkers(this.searchQuery).subscribe((response) => {
+      this.workers = response;
+      console.log('new data is received: ' + response);
+    });
   }
 }
